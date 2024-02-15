@@ -3,7 +3,7 @@
 namespace AutoLoginer
 {
     /// <summary>
-    /// Class that presses a LogIn button
+    /// Presses a LogIn button
     /// </summary>
     internal interface ILoginButtonPresser
     {

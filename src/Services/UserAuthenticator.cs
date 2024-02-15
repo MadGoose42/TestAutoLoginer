@@ -38,7 +38,6 @@ namespace AutoLoginer
                 {
                     throw new ArgumentNullException("passwordBox is null");
                 }
-                //(TreeScope.Descendants, new PropertyCondition(AutomationElement.LocalizedControlTypeProperty, "edit"));
                 //searching for a button
                 _okButton = _ae.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "OK"));
                 TextInserter.InsertText(_usernameBox, username);

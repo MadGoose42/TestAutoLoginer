@@ -12,8 +12,8 @@ namespace AutoLoginer.UIADevtools
         /// <summary>
         /// Inserts 
         /// </summary>
-        /// <param name="textItem"><see cref="AutomationElement"/> object that has <see cref="ValuePattern"/>.</param>
-        /// <param name="text">Value that you want to insert</param>
+        /// <param name="textItem">UIA object with <see cref="ValuePattern"/>.</param>
+        /// <param name="text">Text that you want to insert</param>
         /// <exception cref="ApplicationException"></exception>
         public static void InsertText(AutomationElement textItem, string text)
         {
