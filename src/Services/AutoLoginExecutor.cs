@@ -7,6 +7,7 @@ using System.Windows.Automation;
 
 internal class AutoLoginExecutor : IAutoLoginExecutor
 {
+    private readonly bool _closeDialogWindow = false;
     private readonly IMainWindowFinder finder;
     private readonly ILoginButtonPresser loginButtonPresser;
     private readonly IUserAuthenticator userAuthenticator;
@@ -33,10 +34,13 @@ internal class AutoLoginExecutor : IAutoLoginExecutor
         userAuthenticator.AuthenticateUser(username, password);
         Console.WriteLine("Auth finished");
 
-        //processing 3rd window
-        Console.WriteLine("Dialog window closer created");
-        connectmyserverDialogCloser.CloseDialogWindow(_mainWindow);
-        Console.WriteLine("Dialog window closing finished");
+        //processing 3rd window if needed
+        if (_closeDialogWindow)
+        {
+            Console.WriteLine("Dialog window closer created");
+            connectmyserverDialogCloser.CloseDialogWindow(_mainWindow);
+            Console.WriteLine("Dialog window closing finished");
+        }
 
         //app may be closed here, not sure if need to be
         Console.WriteLine("I'm done!");
