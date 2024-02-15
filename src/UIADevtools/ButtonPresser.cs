@@ -4,9 +4,9 @@ using System.Windows.Automation;
 
 namespace AutoLoginer.UIADevtools
 {
-    public static class ButtonPresser
+    public class ButtonPresser : IButtonPresser
     {
-        public static void PressButton(AutomationElement button)
+        public void PressButton(AutomationElement button)
         {
             //checking for an invoke pattern (it should be)
             if (button.TryGetCurrentPattern(InvokePattern.Pattern, out var objPattern))

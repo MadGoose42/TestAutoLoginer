@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoLoginer.UIADevtools;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -20,7 +21,17 @@ namespace AutoLoginer
             //autologin
             Console.WriteLine("Hello world");
             var process = Process.Start(path);
-            IAutoLoginExecutor worker = new AutoLoginExecutor(new MainWindowFinder(), new LoginButtonPresser(), new UserAuthenticator(), new ConnectmyserverDialogCloser());
+            //Creating instances,
+            //DI Transient mock for ButtonPresser and TextInserter
+            IAutoLoginExecutor worker = new AutoLoginExecutor(
+                new MainWindowFinder(),
+                new LoginButtonPresser(
+                    new ButtonPresser()), 
+                new UserAuthenticator(
+                    new TextInserter(), 
+                    new ButtonPresser()), 
+                new ConnectmyserverDialogCloser(
+                    new ButtonPresser()));
             await worker.ExecuteAutoLogin(path, username, password);
 #if DEBUG
             await Task.Delay(1000000000);

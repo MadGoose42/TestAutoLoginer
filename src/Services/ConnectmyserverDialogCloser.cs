@@ -10,7 +10,13 @@ namespace AutoLoginer
 {
     internal class ConnectmyserverDialogCloser : IConnectmyserverDialogCloser
     {
+        private readonly IButtonPresser buttonPresser;
         private AutomationElement _okButton;
+        internal ConnectmyserverDialogCloser (IButtonPresser ButtonPresser)
+        {
+            buttonPresser = ButtonPresser;
+        }
+
         public void CloseDialogWindow(AutomationElement AE)
         {
             try
@@ -18,7 +24,7 @@ namespace AutoLoginer
                 //searching for a button
                 _okButton = AE.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "OK"));
                 //pressing a button
-                ButtonPresser.PressButton(_okButton);
+                buttonPresser.PressButton(_okButton);
             }
             catch (Exception)
             {

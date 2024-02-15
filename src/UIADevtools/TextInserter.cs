@@ -7,7 +7,7 @@ using System.Windows.Automation;
 
 namespace AutoLoginer.UIADevtools
 {
-    public static class TextInserter
+    public class TextInserter : ITextInserter
     {
         /// <summary>
         /// Inserts 
@@ -15,7 +15,7 @@ namespace AutoLoginer.UIADevtools
         /// <param name="textItem">UIA object with <see cref="ValuePattern"/>.</param>
         /// <param name="text">Text that you want to insert</param>
         /// <exception cref="ApplicationException"></exception>
-        public static void InsertText(AutomationElement textItem, string text)
+        public void InsertText(AutomationElement textItem, string text)
         {
             //checking for an edit pattern (it should be)
             if (textItem.TryGetCurrentPattern(ValuePattern.Pattern, out var objPattern))

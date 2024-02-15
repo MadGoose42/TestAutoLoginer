@@ -12,7 +12,12 @@ namespace AutoLoginer
 {
     internal class LoginButtonPresser : ILoginButtonPresser
     {
+        private readonly IButtonPresser buttonPresser;
         private AutomationElement _buttonLogIn;
+        internal LoginButtonPresser(IButtonPresser ButtonPresser)
+        {
+            buttonPresser = ButtonPresser;
+        }
         public void PressButtonLogin(AutomationElement AE)
         {
             try
@@ -20,7 +25,7 @@ namespace AutoLoginer
                 //searching for a button
                 _buttonLogIn = AE.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "Log In"));
                 //checking for an invoke pattern (it should be)
-                ButtonPresser.PressButton(_buttonLogIn);
+                buttonPresser.PressButton(_buttonLogIn);
             }
             catch (Exception)
             {

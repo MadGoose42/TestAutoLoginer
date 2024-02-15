@@ -10,10 +10,17 @@ namespace AutoLoginer
 {
     internal class UserAuthenticator : IUserAuthenticator
     {
+        private readonly ITextInserter textInserter;
+        private readonly IButtonPresser buttonPresser;
         private AutomationElement _ae;
         private AutomationElement _usernameBox;
         private AutomationElement _passwordBox;
         private AutomationElement _okButton;
+        internal UserAuthenticator(ITextInserter TextInserter, IButtonPresser ButtonPresser)
+        {
+            textInserter = TextInserter;
+            buttonPresser = ButtonPresser;
+        }
         public void AuthenticateUser(string username, string password)
         {
             try
@@ -40,10 +47,10 @@ namespace AutoLoginer
                 }
                 //searching for a button
                 _okButton = _ae.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "OK"));
-                TextInserter.InsertText(_usernameBox, username);
-                TextInserter.InsertText(_passwordBox, password);
+                textInserter.InsertText(_usernameBox, username);
+                textInserter.InsertText(_passwordBox, password);
                 //pressing OK button
-                ButtonPresser.PressButton(_okButton);
+                buttonPresser.PressButton(_okButton);
             }
             catch (Exception)
             {
