@@ -7,8 +7,7 @@ To use this project you need only visual studio.
 OR<br>
 open AutoLoginer\src\bin\Debug, create new folder "app" and put AuthTest.exe there
 - you can change login and password at program.cs
-- Navigate to Debug->Exceptions...
+- Navigate to Debug->Windows->Exceptions settings (may be different, depends on Visual Stodio version)
 - Expand "Managed Debugging Assistants"
 - Uncheck the NonComVisibleBaseClass Thrown option.
-- Click [Ok]
 - Run the project in debug mode, it will log you in.
